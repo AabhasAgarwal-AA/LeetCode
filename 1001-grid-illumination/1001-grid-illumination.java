@@ -1,16 +1,5 @@
 class Solution {
-    // int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {-1, -1}, {-1, 1}, {1, -1}};
-    int[][] dirs = {
-        {-1, 0},
-        {-1, 1},
-        {0, 1},
-        {1, 1},
-        {1, 0},
-        {1, -1},
-        {0, -1},
-        {-1, -1},
-         {0, 0},
-    };
+    int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {-1, -1}, {-1, 1}, {1, -1}, {0, 0}};
     public int[] gridIllumination(int n, int[][] lamps, int[][] queries) {
         HashMap<Integer, Integer> rowMap = new HashMap<>();
         HashMap<Integer, Integer> colMap = new HashMap<>();
