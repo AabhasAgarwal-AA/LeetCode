@@ -5,7 +5,8 @@ class Solution {
         HashMap<Integer, Integer> colMap = new HashMap<>();
         HashMap<Integer, Integer> xpyMap = new HashMap<>();
         HashMap<Integer, Integer> xmyMap = new HashMap<>();
-        HashMap<Integer, Integer> lampMap = new HashMap<>();
+        // HashMap<Integer, Integer> lampMap = new HashMap<>();
+        HashMap<Integer, Boolean> lampMap = new HashMap<>();
         
         for(int[] lamp : lamps){
             int x = lamp[0], y = lamp[1];
@@ -14,7 +15,8 @@ class Solution {
                 colMap.put(y, colMap.getOrDefault(y, 0) + 1);
                 xpyMap.put(x + y, xpyMap.getOrDefault(x + y, 0) + 1);
                 xmyMap.put(x - y, xmyMap.getOrDefault(x - y, 0) + 1);
-                lampMap.put(x * n + y, lampMap.getOrDefault(x * n + y, 0) + 1);
+                //lampMap.put(x * n + y, lampMap.getOrDefault(x * n + y, 0) + 1);
+                lampMap.put(x * n + y, true);
             }
         }
         
