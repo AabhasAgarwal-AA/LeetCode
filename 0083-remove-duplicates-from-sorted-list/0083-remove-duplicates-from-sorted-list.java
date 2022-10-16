@@ -9,21 +9,26 @@
  * }
  */
 class Solution {
+    ListNode th = null, tt = null;
     public ListNode deleteDuplicates(ListNode head) {
         if(head == null || head.next == null)
             return head;
-        ListNode dummy = new ListNode(-(int)1e8);
-        ListNode itr = dummy, curr = head;
-        while(curr != null){ 
-            while(curr != null && itr.val == curr.val)
-                curr = curr.next;
-
-            itr.next = curr;
-            itr = itr.next;
-            if(curr != null)
-                curr = curr.next;
+        ListNode curr = head;
+        while(curr != null){
+            ListNode forw = curr.next;
+            curr.next = null;
+            if(tt == null || tt.val != curr.val)
+                addLast(curr);
+            curr = forw;
         }
-        
-        return dummy.next;
+        return th;
+    }
+    private void addLast(ListNode node){
+        if(tt == null){ 
+            th = tt = node;
+        }else{ 
+            tt.next = node;
+            tt = node;
+        }
     }
 }
