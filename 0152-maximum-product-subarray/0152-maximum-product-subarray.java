@@ -3,15 +3,24 @@ class Solution {
         if(nums.length == 1)
             return nums[0];
         
-        int maxProduct = -(int)1e9;
+        int res = nums[0];
+        int positive = 1;
+        int negative = 1;
+        
         for(int i = 0; i < nums.length; i++){
-            int product = nums[i];
-            maxProduct = Math.max(product, maxProduct);
-            for(int j = i + 1; j < nums.length; j++){
-                product = product * nums[j];
-                maxProduct = Math.max(product, maxProduct);
+            if(nums[i] >= 0){
+                // positive value
+                positive = Math.max(positive * nums[i], nums[i]);
+                negative = negative * nums[i];
+            }else{
+                // negative value
+                int temp = negative;
+                negative = Math.min(nums[i], nums[i] * positive);
+                positive = temp * nums[i];
             }
+            res = Math.max(res, positive);
+            res = Math.max(res, negative);
         }
-        return maxProduct;
+        return res;
     }
 }
