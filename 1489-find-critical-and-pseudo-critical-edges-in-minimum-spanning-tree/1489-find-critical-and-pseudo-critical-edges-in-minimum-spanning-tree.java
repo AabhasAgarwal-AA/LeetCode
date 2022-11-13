@@ -2,7 +2,7 @@ class Solution {
     class unionFind{
         int[] p, r;
         int comps = 0;
-        unionFind(int n){
+        unionFind(int n){ // constructor
             p = new int[n];
             r = new int[n];
             comps = n;
