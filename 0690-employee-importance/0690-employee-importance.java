@@ -14,14 +14,18 @@ class Solution {
             map.put(e.id, e);
         }
         
-        return dfs(map, id);
-    }
-    private int dfs(HashMap<Integer, Employee> map, int id){
-        int sum = map.get(id).importance;
-        
-        for(int subID: map.get(id).subordinates){
-            sum += dfs(map, subID);
+        LinkedList<Employee> que = new LinkedList<>();
+        int sum = 0;
+        que.addLast(map.get(id));
+        while(que.isEmpty() == false){
+            Employee rem = que.removeFirst();
+            sum += rem.importance;
+            
+            for(int subID: rem.subordinates){
+                que.addLast(map.get(subID));
+            }
         }
+        
         return sum;
     }
 }
