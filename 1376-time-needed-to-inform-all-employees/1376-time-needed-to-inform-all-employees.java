@@ -1,4 +1,12 @@
 class Solution {
+    class Pair{
+        int vtx;
+        int time;
+        Pair(int vtx, int time){
+            this.vtx = vtx;
+            this.time = time;
+        }
+    }
     public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
         ArrayList<Integer>[] graph = new ArrayList[n];
         for(int i = 0; i < n; i++){
@@ -11,16 +19,23 @@ class Solution {
                 graph[Manager].add(i);
             }
         }
+        LinkedList<Pair> que = new LinkedList<>();
+        que.addLast(new Pair(headID, 0));
+        int maxTime = 0;
         
-        return dfs(graph, headID, informTime);
-    }
-    
-    private int dfs(ArrayList<Integer>[] graph, int src, int[] informTime){
-        int childTime = 0;
-        
-        for(int subOrd: graph[src]){
-            childTime = Math.max(childTime, dfs(graph, subOrd, informTime));
+        while(que.size() != 0){
+            int size = que.size();
+            while(size-- > 0){
+                Pair rem = que.removeFirst();
+                maxTime = Math.max(maxTime, rem.time);
+                
+                int timeForSub = informTime[rem.vtx];
+                for(int subOrd: graph[rem.vtx]){
+                    que.addLast(new Pair(subOrd, timeForSub + rem.time));
+                }
+            }
         }
-        return childTime + informTime[src];
-    }
+        
+        return maxTime;
+    }    
 }
